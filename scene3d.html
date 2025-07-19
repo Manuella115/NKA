@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>NKA - Galerie 3D</title>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="guide-vocal.js" defer></script>
+</head>
+<body>
+    <a-scene background="color: #ECECEC">
+
+        <a-assets>
+            <img id="textureSol" src="images/sol.jpg">
+            <img id="textureMur" src="images/mur.jpg">
+            <img id="oeuvre1" src="images/oeuvre1.jpg">
+            <img id="oeuvre2"src="images/oeuvre2.jpg">
+            <img id="oeuvre3" src="images/oeuvre3.jpg">
+        </a-assets>
+
+        <a-plane 
+            src="#textureSol" 
+            position="0 0 -4" 
+            rotation="-90 0 0" 
+            width="20" 
+            height="20">
+        </a-plane>
+
+        <a-plane src="#textureMur" position="0 2.5 -14" width="20" height="5"></a-plane>
+        <a-plane src="#textureMur" position="-10 2.5 -4" rotation="0 90 0" width="20" height="5"></a-plane>
+        <a-plane src="#textureMur" position="10 2.5 -4" rotation="0 -90 0" width="20" height="5"></a-plane>
+
+        <a-image 
+            class="oeuvre"
+            src="#oeuvre1" 
+            width="3" 
+            height="2" 
+            position="-5 2.5 -13.9"
+            data-description="Cette oeuvre, nommée L'Aube Écarlate, explore les dynamiques de couleurs chaudes.">
+        </a-image>
+
+        <a-image 
+            class="oeuvre"
+            src="#oeuvre2" 
+            width="2.5" 
+            height="2.5" 
+            position="0 2.5 -13.9"
+            data-description="Ici, l'artiste joue avec les formes géométriques pour représenter le rythme d'une danse traditionnelle.">
+        </a-image>
+        
+        <a-image 
+            class="oeuvre"
+            src="#oeuvre3" 
+            width="2" 
+            height="3" 
+            position="5 2.5 -13.9"
+            data-description="Ce portrait abstrait, intitulé 'Regard Intérieur', invite à la contemplation.">
+        </a-image>
+
+        <a-entity id="porte-sortie" position="9.9 2.5 -4" rotation="0 -90 0">
+            <a-plane color="#111111" width="2.5" height="3"></a-plane>
+            <a-text 
+                value="SORTIR" 
+                color="#D7322A"l
+                align="center"
+                position="0 0 0.1"
+                width="8">
+            </a-text>
+        </a-entity>
+
+        <a-camera>
+            <a-cursor color="#D7322A" scale="1.5"></a-cursor>
+        </a-camera>
+
+    </a-scene>
+    <div class="chatbot-launcher">
+    <div class="chatbot-icon">💬</div>
+</div>
+
+<div class="chat-window">
+    <div class="chat-header">
+        <h3>NKA Guide</h3>
+        <button class="chat-close-btn">&times;</button>
+    </div>
+    <div class="chat-body">
+        <div class="chat-messages">
+            <div class="message bot">Salut ! Je suis ton guide pour explorer l'art africain. Pose-moi une question !</div>
+        </div>
+    </div>
+    <div class="chat-footer">
+        <form id="chat-form">
+            <input type="text" id="chat-input" placeholder="Écris ton message..." autocomplete="off">
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

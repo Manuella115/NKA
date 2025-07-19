@@ -1,0 +1,336 @@
+/* style.css */
+
+/* Style général pour tout le site */
+body {
+    margin: 0;
+    font-family: 'Balsamiq Sans', cursive; /* Police créative et lisible */
+    color: #333;
+    text-align: center;
+}
+
+/* --- Style de la Page d'Accueil (index.html) --- */
+.accueil {
+    /* Un fond dégradé avec tes couleurs */
+    background: linear-gradient(135deg, #FF8117, #D7322A);
+    height: 100vh; /* Prend toute la hauteur de l'écran */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.contenu-accueil h1 {
+    font-family: 'Fredoka One', cursive; /* Une police fun pour le titre */
+    font-size: 4rem; /* Grosse taille de police */
+    text-shadow: 2px 2px 4px #00000050; /* Ombre pour faire ressortir */
+}
+
+.contenu-accueil p {
+    font-size: 1.5rem;
+    margin-top: -10px; /* Rapproche le slogan du titre */
+}
+
+.fleche-lien {
+    margin-top: 40px;
+    display: inline-block;
+}
+
+.fleche-lien img {
+    width: 80px;
+    transition: transform 0.3s; /* Ajoute une petite animation */
+}
+
+.fleche-lien:hover img {
+    transform: scale(1.2); /* L'image grossit au survol */
+}
+
+
+/* --- Style de la Page des Catégories (categories.html) --- */
+header h2 {
+    background-color: #064D80;
+    color: white;
+    padding: 20px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.5rem;
+}
+
+.grille-categories {
+    display: flex;
+    flex-wrap: wrap; /* Permet aux éléments d'aller à la ligne */
+    justify-content: center;
+    gap: 20px; /* Espace entre les cadres */
+    padding: 40px;
+}
+
+.cadre-categorie {
+    background-color: #f0f0f0;
+    border: 5px solid #064D80;
+    border-radius: 15px; /* Bords arrondis */
+    width: 200px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer; /* Le curseur devient une main */
+    transition: all 0.3s;
+    box-shadow: 5px 5px 10px #00000030;
+}
+
+.cadre-categorie:hover {
+    transform: translateY(-10px); /* Le cadre se soulève */
+    background-color: #FF8117;
+    color: white;
+    border-color: #D7322A;
+}
+
+.section-galerie {
+    padding: 50px;
+    background-color: #f0f0f0;
+}
+
+.bouton-galerie {
+    display: inline-block;
+    background-color: #D7322A;
+    color: white;
+    padding: 25px 50px;
+    font-size: 2rem;
+    font-family: 'Fredoka One', cursive;
+    text-decoration: none; /* Enlève le soulignement du lien */
+    border-radius: 50px; /* Pour un effet "bouton" fun */
+    transition: transform 0.2s;
+}
+
+.bouton-galerie:hover {
+    transform: scale(1.05); /* Grossit légèrement */
+}
+
+/* --- Style pour la page d'entrée de la galerie --- */
+.page-galerie-entree {
+    background: linear-gradient(135deg, #064D80, #D7322A);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.contenu-entree {
+    max-width: 600px;
+}
+
+.contenu-entree h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 3.5rem;
+}
+
+.bouton-entree {
+    display: inline-block;
+    margin-top: 30px;
+    background-color: #FF8117;
+    color: white;
+    padding: 20px 40px;
+    font-size: 1.8rem;
+    font-family: 'Fredoka One', cursive;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0px 5px 15px #00000050;
+}
+
+.bouton-entree:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 8px 20px #00000070;
+}
+/* --- NOUVEAU : Styles pour la navigation et les pages de détail --- */
+
+/* L'en-tête de navigation commun */
+.header-principal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background-color: #064D80;
+    color: white;
+}
+
+.header-principal .logo {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.5rem;
+    color: white;
+    text-decoration: none;
+}
+
+.header-principal .titre-page {
+    font-size: 2rem;
+    font-family: 'Fredoka One', cursive;
+    margin: 0; /* Enlève la marge par défaut du h2 */
+}
+
+/* Conteneur principal pour les pages de détail */
+.contenu-detail {
+    padding: 40px;
+    text-align: center;
+}
+
+.contenu-detail h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 3rem;
+    color: #D7322A;
+}
+
+.zone-contenu {
+    background-color: #f7f7f7;
+    border: 2px dashed #064D80;
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 800px;
+    min-height: 200px;
+    border-radius: 15px;
+}
+
+/* Le bouton pour revenir en arrière */
+.bouton-retour {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #FF8117;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.bouton-retour:hover {
+    transform: scale(1.05);
+}
+
+/* --- NOUVEAU : Styles pour le Chatbot --- */
+
+.chatbot-launcher {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #D7322A;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 999;
+    transition: transform 0.2s;
+}
+
+.chatbot-launcher:hover {
+    transform: scale(1.1);
+}
+
+.chatbot-icon {
+    font-size: 30px;
+}
+
+.chat-window {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 350px;
+    max-width: 90%;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: none; /* Caché par défaut */
+    flex-direction: column;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.chat-window.active {
+    display: flex; /* Rendu visible par JavaScript */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.chat-header {
+    background-color: #064D80;
+    color: white;
+    padding: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-family: 'Fredoka One', cursive;
+}
+
+.chat-close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.chat-body {
+    flex-grow: 1;
+    padding: 15px;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    line-height: 1.4;
+}
+
+.message.bot {
+    background-color: #f1f1f1;
+    align-self: flex-start;
+}
+
+.message.user {
+    background-color: #064D80;
+    color: white;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.chat-footer {
+    padding: 15px;
+    border-top: 1px solid #f1f1f1;
+}
+
+#chat-form {
+    display: flex;
+}
+
+#chat-input {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+#chat-form button {
+    background-color: #FF8117;
+    border: none;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+}
