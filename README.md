@@ -2,7 +2,7 @@ Projet NKA
 Slogan : Redécouvrez la créativité africaine.
 
 📜 À Propos du Projet
-NKA est une application web interactive conçue pour célébrer et démocratiser l'art africain sous toutes ses formes. Né lors d'un hackathon de 24 heures, ce projet a pour mission de résoudre un double problème : le manque de visibilité pour de nombreux artistes du continent et la perception souvent distante de l'art par le grand public.
+NKA est une application web conçue pour célébrer et démocratiser l'art africain sous toutes ses formes. Né lors d'un hackathon de 24 heures, ce projet a pour mission de résoudre un double problème : le manque de visibilité pour de nombreux artistes du continent et la perception souvent distante de l'art par le grand public.
 
 Notre solution est une plateforme ludique, immersive et accessible qui sert de pont entre la création artistique et la curiosité du public, avec pour but ultime d'inspirer les utilisateurs à découvrir les manifestations artistiques physiques (expositions, concerts, etc.).
 
