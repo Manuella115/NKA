@@ -1,12 +1,4 @@
-// script.js (Version avec IA Gemini)
-
 document.addEventListener('DOMContentLoaded', function() {
-
-    // --- CONFIGURATION ---
-    const API_KEY = "AIzaSyBOQ_WQyKY5383RfT5tNjKmhVUPKaRf86M"; // ⚠️ Remplace par ta vraie clé API !
-    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
-
-    const SYSTEM_PROMPT = `Tu es le "Guide NKA", un chatbot expert, amical et passionné pour le site web "NKA". Ta mission est de faire découvrir la créativité africaine de manière amusante et accessible, comme à un ami curieux. Le site NKA a plusieurs sections : Peintures, Musique, Danse traditionnelle, Tourisme, Slam, Masques traditionnels, Sculptures, et Photographie. Il y a aussi une galerie virtuelle 3D pour des expositions immersives. Tes règles sont : 1. Ton ton est toujours positif, encourageant et simple. 2. Réponds aux questions sur le site NKA et sur l'art africain en général. 3. Capacité spéciale : Si un utilisateur te demande des recommandations d'activités, demande-lui dans quel pays il se trouve. Ensuite, propose 2 ou 3 activités artistiques ou culturelles (festivals connus, musées, lieux culturels emblématiques) de ce pays en précisant qu'il est bon de vérifier les dates et horaires en ligne. 4. À la fin de chaque conversation ou si la discussion s'épuise, mentionne l'exposition en cours : "D'ailleurs, n'oublie pas de visiter notre exposition 3D du moment, 'Couleurs d'Afrique' !".`;
 
     // --- SÉLECTION DES ÉLÉMENTS HTML ---
     const launcher = document.querySelector('.chatbot-launcher');
@@ -16,12 +8,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatInput = document.getElementById('chat-input');
     const messagesContainer = document.querySelector('.chat-messages');
 
-    // --- GESTION DE L'HISTORIQUE DE CONVERSATION ---
-    let conversationHistory = [];
-
     // --- ÉVÉNEMENTS ---
-    launcher.addEventListener('click', () => chatWindow.classList.toggle('active'));
-    closeBtn.addEventListener('click', () => chatWindow.classList.remove('active'));
+    launcher.addEventListener('click', () => {
+        chatWindow.classList.toggle('active');
+        const notification = document.querySelector('.chatbot-notification');
+        if (notification) {
+            notification.classList.remove('visible');
+        }
+    });
+
+    closeBtn.addEventListener('click', () => {
+        chatWindow.classList.remove('active');
+    });
 
     chatForm.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -29,14 +27,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (userMessage === '') return;
 
         addMessage(userMessage, 'user');
-        // Ajoute le message de l'utilisateur à l'historique
-        conversationHistory.push({ role: "user", parts: [{ text: userMessage }] });
-        
         chatInput.value = '';
-        getBotResponse(); // Appelle la fonction pour obtenir la réponse de l'IA
+
+        setTimeout(() => {
+            const botResponse = getBotResponse(userMessage);
+            addMessage(botResponse, 'bot');
+        }, 800);
     });
 
-    // --- FONCTIONS PRINCIPALES ---
+    // --- FONCTIONS ---
     function addMessage(text, type) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message', type);
@@ -45,41 +44,42 @@ document.addEventListener('DOMContentLoaded', function() {
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-    // NOUVELLE FONCTION qui interroge l'API Gemini
-    async function getBotResponse() {
-        try {
-            const response = await fetch(API_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    // On envoie l'instruction système et tout l'historique
-                    "systemInstruction": {
-                        "parts": [{ "text": SYSTEM_PROMPT }]
-                    },
-                    "contents": conversationHistory 
-                }),
-            });
-
-            if (!response.ok) {
-                throw new Error(`Erreur API : ${response.statusText}`);
-            }
-
-            const data = await response.json();
-            // On s'assure que la réponse et le texte existent
-            if (data.candidates && data.candidates[0].content.parts[0].text) {
-                const botMessage = data.candidates[0].content.parts[0].text;
-                addMessage(botMessage, 'bot');
-                // Ajoute la réponse du bot à l'historique
-                conversationHistory.push({ role: "model", parts: [{ text: botMessage }] });
-            } else {
-                 addMessage("Oups, je n'ai pas trouvé de réponse. Réessaie !", 'bot');
-            }
-
-        } catch (error) {
-            console.error("Erreur de connexion à l'IA:", error);
-            addMessage("Désolé, je rencontre un problème technique pour me connecter. Réessaie plus tard.", 'bot');
+    function getBotResponse(userInput) {
+        const input = userInput.toLowerCase();
+        if (input.includes('bonjour') || input.includes('salut')) {
+            return "Bonjour ! Je suis le guide NKA. Comment puis-je t'aider à explorer la creativité africaine ?";
+        } else if (input.includes('expo') || input.includes('galerie') || input.includes('3d')) {
+            return "L'exposition virtuelle 3D 'Couleurs d'Afrique' est une expérience immersive ! Tu peux y accéder depuis la page des catégories.";
+        } else if (input.includes('peinture') || input.includes('musique') || input.includes('art')) {
+            return "NKA célèbre de nombreuses formes d'art : peinture, musique, danse, sculpture, art hybride... Explore la page des catégories pour toutes les découvrir !";
+        } else {
+            return "Je peux te renseigner sur la galerie 3D, les peintures, la musique, et plus encore !";
         }
     }
+
+    // Logique pour une notification UNIQUE par session de navigation
+    function lancerNotification() {
+        if (!sessionStorage.getItem('notificationShown')) {
+            const notifDiv = document.createElement('div');
+            notifDiv.className = 'chatbot-notification';
+            notifDiv.textContent = "Psst ! Je suis là si tu as besoin d'un guide ! 👋";
+            document.body.appendChild(notifDiv);
+
+            setTimeout(() => {
+                notifDiv.classList.add('visible');
+            }, 1500);
+
+            setTimeout(() => {
+                notifDiv.classList.remove('visible');
+            }, 8000);
+
+            notifDiv.addEventListener('click', () => {
+                notifDiv.classList.remove('visible');
+            });
+
+            sessionStorage.setItem('notificationShown', 'true');
+        }
+    }
+
+    lancerNotification();
 });

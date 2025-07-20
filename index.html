@@ -9,36 +9,52 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&family=Fredoka+One&display=swap" rel="stylesheet">
 </head>
-<body class="accueil">
+<body>
 
     <div class="contenu-accueil">
-        <h1>BIENVENUE SUR NKA</h1>
-        <p>Redécouvrez la créativité africaine</p>
-        
-        <a href="categories.html" class="fleche-lien">
-            <img src="images/fleche.png" alt=" ➡️">
-            </a>
-    </div>
-<div class="chatbot-launcher">
-    <div class="chatbot-icon">💬</div>
-</div>
+<h1 class="titre-accueil-logo">
+    <span>BIENVENUE SUR</span>
+    <img src="images/logo-nka.png" alt="Logo NKA" class="logo-inline">
+</h1>        <p>Redécouvrez la créativité africaine</p>
 
-<div class="chat-window">
-    <div class="chat-header">
-        <h3>NKA Guide</h3>
-        <button class="chat-close-btn">&times;</button>
+        <a href="categories.html" class="fleche-lien">
+<img src="images/fleche.png" alt="Flèche pour continuer">        </a>
     </div>
-    <div class="chat-body">
-        <div class="chat-messages">
-            <div class="message bot">Salut ! Je suis ton guide pour explorer l'art africain. Pose-moi une question !</div>
+
+    <div class="chatbot-launcher">
+        <div class="chatbot-icon">💬</div>
+    </div>
+    <div class="chat-window">
+        <div class="chat-header">
+            <h3>NKA Guide</h3>
+            <button class="chat-close-btn">&times;</button>
+        </div>
+        <div class="chat-body">
+            <div class="chat-messages">
+                <div class="message bot">Salut ! Je suis ton guide pour explorer l'art africain. Pose-moi une question !</div>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <form id="chat-form">
+                <input type="text" id="chat-input" placeholder="Écris ton message..." autocomplete="off">
+                <button type="submit">Envoyer</button>
+            </form>
         </div>
     </div>
-    <div class="chat-footer">
-        <form id="chat-form">
-            <input type="text" id="chat-input" placeholder="Écris ton message..." autocomplete="off">
-            <button type="submit">Envoyer</button>
-        </form>
+
+    <script src="script.js"></script>
+
+
+<footer class="site-footer">
+    <div class="footer-gauche">
+        <p>&copy; 2025 NKA. Tous droits réservés.</p>
     </div>
-</div>
+    <div class="footer-droit">
+        <a href="a-propos.html">À Propos</a>
+        <a href="mailto:contact@nka.art">Contact</a>
+        <a href="connexion-artiste.html">Espace Artiste</a>
+    </div>
+</footer>
+
 </body>
 </html>

@@ -3,28 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NKA - Danse</title>
+    <title>NKA - Danse Traditionnelle</title>
     <link rel="stylesheet" href="style.css">
+    <!-- CORRECTION : Ajout des polices manquantes pour un style cohérent -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@0,400;0,700;1,400;1,700&family=Fredoka+One&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="header-principal">
-        <a href="index.html" class="logo">NKA</a>
+        <!-- MODIFIÉ : Le nom du fichier logo est mis à jour en .png -->
+        <a href="index.html" class="logo"><img src="images/logo-nka.png" alt="Logo NKA"></a>
     </header>
 
     <main class="contenu-detail">
         <h1>La Danse Traditionnelle</h1>
         <p>Chaque mouvement raconte une histoire, chaque pas est un héritage. Ressens l'énergie !</p>
 
-        <div class="zone-contenu">
-            <p>Bientôt ici : des vidéos de danses, des explications sur leurs origines et leur signification.</p>
+        <div class="galerie-videos">
+            
+            <div class="video-item">
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/vyym5yjDTcs?si=FG4XIu8TWjCiSSPI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="video-description">
+                    <h3>Danse Zaouli</h3>
+                    <p>Origine : Côte d'Ivoire</p>
+                </div>
+            </div>
+
+            <div class="video-item">
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/qwmVDvpKqrI?si=1kxWxQ1vuSf_4mdx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="video-description">
+                    <h3>Danse Adumu</h3>
+                    <p>Origine : Kenya, Tanzanie (Peuple Maasaï)</p>
+                </div>
+            </div>
+
+            <!-- NOUVELLE VIDÉO AJOUTÉE ET CORRIGÉE -->
+            <div class="video-item">
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/jZz5aRf_g8A?si=dtDrxfNhrUF65r3x" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div> 
+                <div class="video-description">
+                    <h3>Le Poro, la danse des Sénoufo</h3>
+                    <p>Origine : Côte d'Ivoire</p>
+                </div>
+            </div>
+            
         </div>
 
         <a href="categories.html" class="bouton-retour">← Retour aux catégories</a>
     </main>
+    
+   <footer class="site-footer">
+        <div class="footer-gauche">
+            <p>&copy; 2025 NKA. Tous droits réservés.</p>
+        </div>
+        <div class="footer-droit">
+            <a href="a-propos.html">À Propos</a>
+            <a href="mailto:contact@nka.art">Contact</a>
+            <a href="connexion-artiste.html">Espace Artiste</a>
+        </div>
+    </footer>
 
 </body>
 </html>

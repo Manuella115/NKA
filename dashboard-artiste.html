@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NKA - Tableau de Bord</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="auth.js"></script>
+    <script>
+        // Le "garde du corps" est appelé dès le début du chargement
+        protegerPage();
+    </script>
+</head>
+<body>
+    <header class="header-principal">
+        <a href="index.html" class="logo"><img src="images/logo-nka.png" alt="Logo NKA"></a>
+        <a href="connexion-artiste.html" id="lien-deconnexion" class="lien-secondaire">Déconnexion</a>
+    </header>
+
+    <main class="contenu-detail">
+        <h1>Bienvenue sur votre tableau de bord !</h1>
+        <p>Gérez vos créations et partagez votre talent avec le monde.</p>
+        
+        <div class="actions-artiste">
+            <a href="ajouter-oeuvre.html" class="bouton-principal">Ajouter une nouvelle œuvre</a>
+            <a href="#" class="bouton-secondaire">Voir mes œuvres publiées</a>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+    <div class="footer-gauche">
+        <p>&copy; 2025 NKA. Tous droits réservés.</p>
+    </div>
+    <div class="footer-droit">
+        <a href="a-propos.html">À Propos</a>
+        <a href="mailto:contact@nka.art">Contact</a>
+        <a href="connexion-artiste.html">Espace Artiste</a>
+    </div>
+</footer>
+</body>
+</html>

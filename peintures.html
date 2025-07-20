@@ -12,39 +12,68 @@
 <body>
 
     <header class="header-principal">
-        <a href="index.html" class="logo">NKA</a>
+        <a href="index.html" class="logo"><img src="images/logo-nka.png" alt="Logo NKA"></a>
     </header>
 
     <main class="contenu-detail">
         <h1>Les Peintures</h1>
-        <p>Découvrez la richesse des palettes et des histoires racontées par les artistes peintres.</p>
+        <p>Découvrez la richesse des palettes et des histoires racontées par les artistes peintres du continent.</p>
 
-        <div class="zone-contenu">
-            <p>Bientôt ici : une galerie d'images de peintures magnifiques avec le nom de l'artiste et le titre de l'œuvre.</p>
-            </div>
+        <!-- On réutilise le style de galerie existant -->
+        <div class="galerie-photos">
+            
+            <figure class="photo-item">
+                <img src="https://kessiya.com/wp-content/uploads/2023/07/3B70E904-67B5-4C85-A9EB-9C621E8714CC-750x1021.jpeg" alt="Peinture très colorée avec des personnages et du texte">
+                <figcaption>
+                    <p>par Jacob Bleu / Peintres ivoiriens</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-item">
+                <img src="https://kessiya.com/wp-content/uploads/2023/07/C67BBF66-FED5-4970-A2AF-743C71108E5B-750x808.jpeg" alt="Peinture de style Tingatinga montrant un village africain animé">
+                <figcaption>
+                    <p>Tehe Richmond / Peintres ivoiriens</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-item">
+                <img src="https://kessiya.com/wp-content/uploads/2023/07/04923662-55AC-4654-8626-D7F362CB7882-750x900.jpeg" alt="Peinture géométrique et très colorée de style Ndebele">
+                <figcaption>
+                    <p>par James Houra / Peintres ivoiriens</p>
+                </figcaption>
+            </figure>
+
+            <figure class="photo-item">
+                <img src="https://kessiya.com/wp-content/uploads/2023/07/16A3D76C-3EB9-4B9F-8112-C0F0FF0C3D9E-750x746.jpeg" alt="Peinture d'animaux colorés dans la savane">
+                <figcaption>
+                    <p>par Augustin Kassi / Peintres ivoiriens</p>
+                </figcaption>
+            </figure>
+
+        </div>
 
         <a href="categories.html" class="bouton-retour">← Retour aux catégories</a>
     </main>
-<div class="chatbot-launcher">
-    <div class="chatbot-icon">💬</div>
-</div>
-
-<div class="chat-window">
-    <div class="chat-header">
-        <h3>NKA Guide</h3>
-        <button class="chat-close-btn">&times;</button>
-    </div>
-    <div class="chat-body">
-        <div class="chat-messages">
-            <div class="message bot">Salut ! Je suis ton guide pour explorer l'art africain. Pose-moi une question !</div>
+    
+    <footer class="site-footer">
+        <div class="footer-gauche">
+            <p>&copy; 2025 NKA. Tous droits réservés.</p>
         </div>
-    </div>
-    <div class="chat-footer">
-        <form id="chat-form">
-            <input type="text" id="chat-input" placeholder="Écris ton message..." autocomplete="off">
-            <button type="submit">Envoyer</button>
-        </form>
-    </div>
-</div>
+        <div class="footer-droit">
+            <a href="a-propos.html">À Propos</a>
+            <a href="mailto:contact@nka.art">Contact</a>
+            <a href="connexion-artiste.html">Espace Artiste</a>
+        </div>
+    </footer>
+<!-- ... juste avant la fin du body ... -->
+    <footer class="site-footer">
+        <!-- ... contenu du footer ... -->
+    </footer>
+
+    <!-- LA LIGNE À AJOUTER : -->
+    <script src="galerie-animation.js"></script>
+
+</body>
+</html>
 </body>
 </html>

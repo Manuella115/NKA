@@ -2,96 +2,78 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>NKA - Galerie 3D</title>
+    <title>NKA - Exposition Virtuelle</title>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="guide-vocal.js" defer></script>
+        <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-    <a-scene background="color: #ECECEC">
+    <a-scene background="color: #1A1A1A" fog="type: linear; color: #1A1A1A; near: 15; far: 25;">
 
-        <a-assets>
-            <img id="textureSol" src="images/sol.jpg">
-            <img id="textureMur" src="images/mur.jpg">
-            <img id="oeuvre1" src="images/oeuvre1.jpg">
-            <img id="oeuvre2"src="images/oeuvre2.jpg">
-            <img id="oeuvre3" src="images/oeuvre3.jpg">
-        </a-assets>
+        <a-light type="ambient" color="#FFF" intensity="0.2"></a-light>
+        <a-light type="spot" color="#FFF" intensity="0.8" position="-5 4 2" angle="40" penumbra="0.5" target="#mur-fond-oeuvres"></a-light>
+        <a-light type="spot" color="#FFF" intensity="0.6" position="-10 4 2" angle="45" penumbra="0.5" target="#mur-gauche-oeuvres"></a-light>
+        <a-light type="spot" color="#FFF" intensity="0.6" position="10 4 2" angle="45" penumbra="0.5" target="#mur-droit-oeuvres"></a-light> <a-light type="spot" color="#FFF" intensity="0.6" position="5 4 0" angle="30" penumbra="0.5" target="#socle-central-oeuvre"></a-light>
 
-        <a-plane 
-            src="#textureSol" 
-            position="0 0 -4" 
-            rotation="-90 0 0" 
-            width="20" 
-            height="20">
-        </a-plane>
+        <a-plane src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Peinture_au_B%C3%A9nin.jpg/640px-Peinture_au_B%C3%A9nin.jpg" position="0 0 -4" rotation="-90 0 0" width="20" height="20" repeat="5 5"></a-plane>
+        <a-plane color="#FFFFFF" position="0 2.5 -14" width="20" height="6"></a-plane>
+        <a-plane color="#FFFFFF" position="-10 2.5 -4" rotation="0 90 0" width="20" height="6"></a-plane>
+        <a-plane color="#FFFFFF" position="10 2.5 -4" rotation="0 -90 0" width="20" height="6"></a-plane>
 
-        <a-plane src="#textureMur" position="0 2.5 -14" width="20" height="5"></a-plane>
-        <a-plane src="#textureMur" position="-10 2.5 -4" rotation="0 90 0" width="20" height="5"></a-plane>
-        <a-plane src="#textureMur" position="10 2.5 -4" rotation="0 -90 0" width="20" height="5"></a-plane>
-
-        <a-image 
-            class="oeuvre"
-            src="#oeuvre1" 
-            width="3" 
-            height="2" 
-            position="-5 2.5 -13.9"
-            data-description="Cette oeuvre, nommée L'Aube Écarlate, explore les dynamiques de couleurs chaudes.">
-        </a-image>
-
-        <a-image 
-            class="oeuvre"
-            src="#oeuvre2" 
-            width="2.5" 
-            height="2.5" 
-            position="0 2.5 -13.9"
-            data-description="Ici, l'artiste joue avec les formes géométriques pour représenter le rythme d'une danse traditionnelle.">
-        </a-image>
-        
-        <a-image 
-            class="oeuvre"
-            src="#oeuvre3" 
-            width="2" 
-            height="3" 
-            position="5 2.5 -13.9"
-            data-description="Ce portrait abstrait, intitulé 'Regard Intérieur', invite à la contemplation.">
-        </a-image>
-
-        <a-entity id="porte-sortie" position="9.9 2.5 -4" rotation="0 -90 0">
-            <a-plane color="#111111" width="2.5" height="3"></a-plane>
-            <a-text 
-                value="SORTIR" 
-                color="#D7322A"l
-                align="center"
-                position="0 0 0.1"
-                width="8">
-            </a-text>
+        <a-entity id="mur-fond-oeuvres" position="0 0 0">
+            <a-entity position="-6 2.5 -13.9">
+                <a-plane color="#000" width="3.2" height="3.2"></a-plane>
+                <a-image class="oeuvre" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/PORTRAIT_FEMME_MUSULMANE.png/640px-PORTRAIT_FEMME_MUSULMANE.png" width="3" height="3" position="0 0 0.01" data-description="Cette photographie est intitulée 'Reine Kente'. L'artiste a voulu capturer la noblesse et la fierté, en utilisant le tissu Kente, un symbole royal au Ghana, pour souligner la majesté de son sujet'."></a-image>
+            </a-entity>
+             <a-entity position="0 2.5 -13.9">
+                <a-plane color="#000" width="2.4" height="3.2"></a-plane>
+                <a-image class="oeuvre" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Coiffure_Royale_africaine_femme_du_Cameroun.jpg/640px-Coiffure_Royale_africaine_femme_du_Cameroun.jpg" width="2.2" height="3" position="0 0 0.01" data-description="Ce masque est un masque Dan, originaire de Côte d'Ivoire. Ces masques ne sont pas de simples décorations. Ils sont utilisés dans des cérémonies pour incarner des esprits de la nature et jouent un rôle social très important dans la communauté."></a-image>
+            </a-entity>
         </a-entity>
 
-        <a-camera>
-            <a-cursor color="#D7322A" scale="1.5"></a-cursor>
-        </a-camera>
+        <a-entity id="mur-gauche-oeuvres" position="0 0 0">
+            <a-entity position="-9.9 2.5 -2" rotation="0 90 0">
+                 <a-plane color="#000" width="3.2" height="3.2"></a-plane>
+                 <a-image class="oeuvre" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Femme.jpg/640px-Femme.jpg" width="3" height="3" position="0 0 0.01" data-description="Photographie 'La Sagesse du Sapeur'."></a-image>
+            </a-entity>
+            <a-entity position="-9.9 2.5 -8" rotation="0 90 0">
+                <a-plane color="#000" width="2.7" height="3.7"></a-plane>
+                <a-image class="oeuvre" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Femme_Camerounaise_tenues_et_coiffure.jpg/640px-Femme_Camerounaise_tenues_et_coiffure.jpg" width="2.5" height="3.5" position="0 0 0.01" data-description="Tenue et coiffure traditionnelle du Cameroun."></a-image>
+            </a-entity>
+        </a-entity>
+        
+        <a-entity id="mur-droit-oeuvres" position="0 0 0">
+            <a-entity position="9.9 2.5 -2" rotation="0 -90 0">
+                <a-plane color="#000" width="3.2" height="4.2"></a-plane>
+                <a-image class="oeuvre" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Beauty_of_an_African_Woman_%28cropped%29.jpg/640px-Beauty_of_an_African_Woman_%28cropped%29.jpg" width="3" height="4" position="0 0 0.01" data-description="Cette photographie capture la beauté intemporelle et la force sereine d'une femme africaine. L'artiste utilise un éclairage doux pour mettre en valeur les traits du visage et la texture de la peau, créant un portrait puissant et plein de grâce."></a-image>
+            </a-entity>
+            <a-entity position="9.9 2.5 -8" rotation="0 -90 0">
+                <a-plane color="#000" width="3.2" height="3.2"></a-plane>
+                <a-image class="oeuvre" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Femme_et_tenues_et_parures_patrimonialle_du_Cameroun.jpg/640px-Femme_et_tenues_et_parures_patrimonialle_du_Cameroun.jpg" width="3" height="3" position="0 0 0.01" data-description="Cette œuvre met en lumière les parures patrimoniales du Cameroun. Chaque bijou, chaque perle et chaque tissu a une signification. Ils racontent une histoire, indiquent un statut social ou un rôle dans la communauté. C'est un art qui se porte et qui se vit au quotidien."></a-image>
+            </a-entity>
+        </a-entity>
+
+        <a-entity id="socle-central-oeuvre" position="2 0 -6">
+            <a-cylinder color="#111111" height="1.2" radius="0.5"></a-cylinder>
+            <a-entity position="0 1.5 0">
+                <a-plane color="#000" width="2.2" height="3.2"></a-plane>
+                <a-image class="oeuvre" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/ASC_Leiden_-_F._van_der_Kraaij_Collection_-_02_-_021_-_Une_femme_africaine_en_jupe_rouge_avec_un_panier_tress%C3%A9_lors_d%27une_foire_agricole_-_Sikasso%2C_Mali%2C_1972.tif/lossy-page1-640px-thumbnail.tif.jpg" width="2" height="3" position="0 0 0.01" data-description="Cette photographie, prise lors d'une foire agricole à Sikasso, au Mali, est un témoignage de la vie quotidienne et du commerce local. L'artiste capture un moment authentique, mettant en lumière la beauté des tenues traditionnelles et l'importance des paniers tressés, un savoir-faire artisanal transmis de génération en génération."></a-image>
+            </a-entity>
+        </a-entity>
+
+
+       <a-camera position="0 1.6 5">
+    <a-cursor color="#D7322A" scale="1.5"></a-cursor>
+</a-camera>
 
     </a-scene>
-    <div class="chatbot-launcher">
-    <div class="chatbot-icon">💬</div>
-</div>
 
-<div class="chat-window">
-    <div class="chat-header">
-        <h3>NKA Guide</h3>
-        <button class="chat-close-btn">&times;</button>
-    </div>
-    <div class="chat-body">
-        <div class="chat-messages">
-            <div class="message bot">Salut ! Je suis ton guide pour explorer l'art africain. Pose-moi une question !</div>
-        </div>
-    </div>
-    <div class="chat-footer">
-        <form id="chat-form">
-            <input type="text" id="chat-input" placeholder="Écris ton message..." autocomplete="off">
-            <button type="submit">Envoyer</button>
-        </form>
-    </div>
-</div>
+    </a-scene>
+
+    <a href="categories.html" class="exit-button-hud">🚪 Quitter l'exposition</a>
+
+</body>
+</html>
 </body>
 </html>
