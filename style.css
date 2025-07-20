@@ -758,11 +758,14 @@ animation: cardFadeInUp 0.5s ease-out forwards, dance 4s infinite ease-in-out;}
         height: 60px;
     }
     /* On réduit la taille des cartes de catégorie */
-    .cadre-categorie {
-       background-color: #FFFFFF; /* MODIFIÉ : Fond en blanc pur */
-    border: 2px solid #EAEAEA; /* MODIFIÉ : Bordure fine et claire */
-        font-size: 1.2rem;
-    }
+   .cadre-categorie {
+    background-color: #FFFFFF;
+    border: 2px solid #EAEAEA;
+    /* On rend la largeur un peu plus flexible */
+    width: 40%; 
+    height: 120px;
+    font-size: 1.2rem;
+}
     /* On réduit la taille des titres principaux */
     .contenu-detail h1 {
             color: #D7322A; /* C'est votre couleur principale, c'est parfait. */
@@ -780,4 +783,40 @@ animation: cardFadeInUp 0.5s ease-out forwards, dance 4s infinite ease-in-out;}
 
     /* Toutes nos règles pour les petits écrans iront ici, à l'intérieur */
 
+}
+
+/* NOUVEAU : Adaptation pour les petits smartphones */
+@media (max-width: 480px) {
+
+    /* On réduit encore la taille des titres sur la page d'accueil */
+    .titre-accueil-logo {
+        font-size: 3rem;
+    }
+    .contenu-accueil p {
+        font-size: 1.5rem;
+    }
+
+    /* On réduit encore le logo dans l'en-tête */
+    .header-principal {
+        height: 70px;
+    }
+    .header-principal .logo img {
+        height: 50px;
+    }
+
+    /* On fait en sorte que les cartes prennent presque toute la largeur */
+    .cadre-categorie {
+        width: 80%;
+    }
+
+    /* On réduit la taille du bouton de la galerie virtuelle */
+    .bouton-galerie {
+        font-size: 1.2rem;
+        padding: 15px 30px;
+    }
+
+    /* On réduit les marges des galeries */
+    .galerie-photos, .galerie-videos {
+        padding: 15px;
+    }
 }

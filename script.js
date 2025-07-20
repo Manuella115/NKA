@@ -1,6 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- SÉLECTION DES ÉLÉMENTS HTML ---
+    // --- CONFIGURATION ---
+// ⚠️ Collez votre nouvelle clé API ici !
+const API_KEY = "AIzaSyB5hpqq-jeLkK_zkcSDCOtwZiK4iXY97BU"; 
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
+// Le "cerveau" du chatbot : sa personnalité et ses connaissances
+const SYSTEM_PROMPT = `Tu es le "Guide NKA", un chatbot expert, amical et passionné pour le site web "NKA". Ta mission est de faire découvrir la créativité africaine de manière amusante. Le projet a été créé par 5 jeunes femmes passionnées de tech. Le site NKA a plusieurs sections : Peintures, Musique, Danse, Art Hybride, Slam, Masques, Sculptures, et Photographie. Il y a aussi une galerie virtuelle 3D immersive et un Espace Artiste pour que les créateurs partagent leurs œuvres. Tes règles sont : 1. Ton ton est toujours positif et encourageant. 2. Réponds à toutes les questions sur le projet NKA, sa mission, l'équipe, et l'art africain en général. 3. Si on te demande des activités, demande le pays de l'utilisateur pour lui faire des suggestions locales. 4. À la fin des conversations, mentionne l'exposition 3D en cours : 'Couleurs d'Afrique'.`;
+ // --- GESTION DE L'HISTORIQUE DE CONVERSATION ---
+let conversationHistory = [];
+
+// --- SÉLECTION DES ÉLÉMENTS HTML ---
     const launcher = document.querySelector('.chatbot-launcher');
     const chatWindow = document.querySelector('.chat-window');
     const closeBtn = document.querySelector('.chat-close-btn');
@@ -21,18 +30,17 @@ document.addEventListener('DOMContentLoaded', function() {
         chatWindow.classList.remove('active');
     });
 
-    chatForm.addEventListener('submit', function(event) {
+   chatForm.addEventListener('submit', function(event) {
         event.preventDefault();
         const userMessage = chatInput.value.trim();
         if (userMessage === '') return;
 
         addMessage(userMessage, 'user');
+        conversationHistory.push({ role: "user", parts: [{ text: userMessage }] });
         chatInput.value = '';
 
-        setTimeout(() => {
-            const botResponse = getBotResponse(userMessage);
-            addMessage(botResponse, 'bot');
-        }, 800);
+        // On appelle directement la nouvelle fonction qui contacte l'IA
+        getBotResponse(); 
     });
 
     // --- FONCTIONS ---
@@ -44,18 +52,51 @@ document.addEventListener('DOMContentLoaded', function() {
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-    function getBotResponse(userInput) {
-        const input = userInput.toLowerCase();
-        if (input.includes('bonjour') || input.includes('salut')) {
-            return "Bonjour ! Je suis le guide NKA. Comment puis-je t'aider à explorer la creativité africaine ?";
-        } else if (input.includes('expo') || input.includes('galerie') || input.includes('3d')) {
-            return "L'exposition virtuelle 3D 'Couleurs d'Afrique' est une expérience immersive ! Tu peux y accéder depuis la page des catégories.";
-        } else if (input.includes('peinture') || input.includes('musique') || input.includes('art')) {
-            return "NKA célèbre de nombreuses formes d'art : peinture, musique, danse, sculpture, art hybride... Explore la page des catégories pour toutes les découvrir !";
+    async function getBotResponse() {
+    const loadingMessageId = `loading-${Date.now()}`;
+    addMessage("...", 'bot', loadingMessageId);
+
+    const requestBody = {
+        "contents": conversationHistory,
+        "systemInstruction": {
+            "parts": [{ "text": SYSTEM_PROMPT }]
+        }
+    };
+
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestBody),
+        });
+        
+        const loadingMessage = document.getElementById(loadingMessageId);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Erreur API:", errorData);
+            loadingMessage.textContent = `Désolé, une erreur s'est produite (${errorData.error.message}).`;
+            return;
+        }
+
+        const data = await response.json();
+        const botMessage = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (botMessage) {
+            loadingMessage.textContent = botMessage;
+            conversationHistory.push({ role: "model", parts: [{ text: botMessage }] });
         } else {
-            return "Je peux te renseigner sur la galerie 3D, les peintures, la musique, et plus encore !";
+            loadingMessage.textContent = "Oups, je n'ai pas trouvé de réponse. Réessaie !";
+        }
+
+    } catch (error) {
+        console.error("Erreur de connexion à l'IA:", error);
+        const loadingMessage = document.getElementById(loadingMessageId);
+        if (loadingMessage) {
+            loadingMessage.textContent = "Désolé, je rencontre un problème technique. Réessaie plus tard.";
         }
     }
+}
 
     // Logique pour une notification UNIQUE par session de navigation
     function lancerNotification() {
