@@ -49,9 +49,8 @@ Méthode avec Python :
 
 Ouvrez un terminal dans le dossier du projet.
 
-Lancez la commande : python -m http.server
 
-Ouvrez votre navigateur à l'adresse http://localhost:8000.
+Ouvrez votre navigateur à l'adressehttps://manuella115.github.io/NKA/index.html
 
 Naviguez sur le site !
 
