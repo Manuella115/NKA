@@ -11,13 +11,11 @@
 </head>
 <body>
 
-    <!-- MODIFIÉ : L'en-tête est maintenant cohérent avec le reste du site -->
     <header class="header-principal">
         <a href="index.html" class="logo"><img src="images/logo-nka.png" alt="Logo NKA"></a>
     </header>
 
     <main>
-        <!-- Ajout d'un titre pour mieux guider l'utilisateur -->
         <div class="contenu-detail">
             <h1>Explorez les Arts</h1>
             <p>Cliquez sur une catégorie pour commencer votre voyage créatif.</p>
@@ -27,7 +25,6 @@
             <a href="peintures.html" class="cadre-categorie">Peintures</a>
             <a href="musique.html" class="cadre-categorie">Musique</a>
             <a href="danse.html" class="cadre-categorie">Danse traditionnelle</a>
-            <!-- CORRIGÉ : Typo dans Art Hybride -->
             <a href="art-hybride.html" class="cadre-categorie">Art Hybride</a>
             <a href="slam.html" class="cadre-categorie">Slam</a>
             <a href="masques.html" class="cadre-categorie">Masques tradi</a>
@@ -42,16 +39,29 @@
         </a>
     </section>
     
-    <script src="script.js"></script>
-
-    <!-- Chatbot (inchangé) -->
+    <!-- Le "corps" du Chatbot -->
     <div class="chatbot-launcher">
         <div class="chatbot-icon">💬</div>
     </div>
     <div class="chat-window">
-        <!-- ... contenu du chatbot ... -->
+        <div class="chat-header">
+            <h3>NKA Guide</h3>
+            <button class="chat-close-btn">&times;</button>
+        </div>
+        <div class="chat-body">
+            <div class="chat-messages">
+                <div class="message bot">Salut ! Je suis ton guide pour explorer l'art africain. Pose-moi une question !</div>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <form id="chat-form">
+                <input type="text" id="chat-input" placeholder="Écris ton message..." autocomplete="off">
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
     </div>
 
+    <!-- Le Footer (qui manquait dans votre version) -->
     <footer class="site-footer">
         <div class="footer-gauche">
             <p>&copy; 2025 NKA. Tous droits réservés.</p>
@@ -62,5 +72,9 @@
             <a href="connexion-artiste.html">Espace Artiste</a>
         </div>
     </footer>
+
+    <!-- Le "cerveau" du Chatbot, appelé EN DERNIER pour qu'il trouve bien le corps -->
+    <script src="script.js"></script>
+
 </body>
 </html>
