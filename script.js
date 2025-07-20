@@ -1,15 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- CONFIGURATION ---
-// ⚠️ Collez votre nouvelle clé API ici !
-const API_KEY = "AIzaSyB5hpqq-jeLkK_zkcSDCOtwZiK4iXY97BU"; 
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
-// Le "cerveau" du chatbot : sa personnalité et ses connaissances
-const SYSTEM_PROMPT = `Tu es le "Guide NKA", un chatbot expert, amical et passionné pour le site web "NKA". Ta mission est de faire découvrir la créativité africaine de manière amusante. Le projet a été créé par 5 jeunes femmes passionnées de tech. Le site NKA a plusieurs sections : Peintures, Musique, Danse, Art Hybride, Slam, Masques, Sculptures, et Photographie. Il y a aussi une galerie virtuelle 3D immersive et un Espace Artiste pour que les créateurs partagent leurs œuvres. Tes règles sont : 1. Ton ton est toujours positif et encourageant. 2. Réponds à toutes les questions sur le projet NKA, sa mission, l'équipe, et l'art africain en général. 3. Si on te demande des activités, demande le pays de l'utilisateur pour lui faire des suggestions locales. 4. À la fin des conversations, mentionne l'exposition 3D en cours : 'Couleurs d'Afrique'.`;
- // --- GESTION DE L'HISTORIQUE DE CONVERSATION ---
-let conversationHistory = [];
+    
 
-// --- SÉLECTION DES ÉLÉMENTS HTML ---
+    // --- SÉLECTION DES ÉLÉMENTS HTML ---
     const launcher = document.querySelector('.chatbot-launcher');
     const chatWindow = document.querySelector('.chat-window');
     const closeBtn = document.querySelector('.chat-close-btn');
@@ -30,17 +23,18 @@ let conversationHistory = [];
         chatWindow.classList.remove('active');
     });
 
-   chatForm.addEventListener('submit', function(event) {
+    chatForm.addEventListener('submit', function(event) {
         event.preventDefault();
         const userMessage = chatInput.value.trim();
         if (userMessage === '') return;
 
         addMessage(userMessage, 'user');
-        conversationHistory.push({ role: "user", parts: [{ text: userMessage }] });
         chatInput.value = '';
 
-        // On appelle directement la nouvelle fonction qui contacte l'IA
-        getBotResponse(); 
+        setTimeout(() => {
+            const botResponse = getBotResponse(userMessage);
+            addMessage(botResponse, 'bot');
+        }, 800);
     });
 
     // --- FONCTIONS ---
@@ -52,51 +46,42 @@ let conversationHistory = [];
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-    async function getBotResponse() {
-    const loadingMessageId = `loading-${Date.now()}`;
-    addMessage("...", 'bot', loadingMessageId);
+    function getBotResponse(userInput) {
+        const input = userInput.toLowerCase();
 
-    const requestBody = {
-        "contents": conversationHistory,
-        "systemInstruction": {
-            "parts": [{ "text": SYSTEM_PROMPT }]
-        }
-    };
-
-    try {
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(requestBody),
-        });
+        // Salutations
+        if (input.includes('bonjour') || input.includes('salut') || input.includes('hello')) {
+            return "Bonjour ! Je suis le guide de NKA. Comment puis-je vous aider à explorer la créativité africaine aujourd'hui ?";
         
-        const loadingMessage = document.getElementById(loadingMessageId);
+        // Question sur l'équipe
+        } else if (input.includes('qui êtes-vous') || input.includes('équipe') || input.includes('créé par')) {
+            return "NKA est un projet créé par une équipe de 5 jeunes femmes passionnées par la technologie et la richesse culturelle africaine. Vous pouvez en savoir plus sur la page 'À Propos' !";
+        
+        // Question sur le but du projet NKA
+        } else if (input.includes('nka') || input.includes('projet') || input.includes('sert à quoi') || input.includes('mission')) {
+            return "La mission de NKA est de rendre l'art africain accessible et amusant pour tous. Nous voulons être un pont entre le digital et le réel, pour donner envie de découvrir les expositions et les artistes près de chez vous.";
+        
+        // Question sur les catégories
+        } else if (input.includes('catégories') || input.includes('types d\'art') || input.includes('trouve quoi')) {
+            return "Sur NKA, vous pouvez explorer de nombreuses formes d'art : Peinture, Musique, Danse, Photographie, Sculpture, Masques traditionnels, Slam et même de l'Art Hybride comme la coiffure ou le design !";
+        
+        // Question sur la galerie 3D
+        } else if (input.includes('galerie') || input.includes('3d') || input.includes('expo')) {
+            return "Notre galerie virtuelle vous propose une exposition 3D immersive ! C'est une expérience unique pour découvrir des œuvres comme si vous y étiez. Le lien se trouve sur la page des catégories.";
+        
+        // Question sur l'espace artiste
+        } else if (input.includes('artiste') || input.includes('inscrire') || input.includes('participer')) {
+            return "L'Espace Artiste est une zone dédiée aux créateurs. Ils peuvent s'inscrire pour soumettre leurs œuvres et les faire découvrir à notre communauté. Le lien se trouve dans le pied de page du site.";
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error("Erreur API:", errorData);
-            loadingMessage.textContent = `Désolé, une erreur s'est produite (${errorData.error.message}).`;
-            return;
-        }
-
-        const data = await response.json();
-        const botMessage = data.candidates?.[0]?.content?.parts?.[0]?.text;
-
-        if (botMessage) {
-            loadingMessage.textContent = botMessage;
-            conversationHistory.push({ role: "model", parts: [{ text: botMessage }] });
+        // Politesse
+        } else if (input.includes('merci')) {
+            return "Avec plaisir ! N'hésitez pas si vous avez d'autres questions.";
+        
+        // Réponse par défaut
         } else {
-            loadingMessage.textContent = "Oups, je n'ai pas trouvé de réponse. Réessaie !";
-        }
-
-    } catch (error) {
-        console.error("Erreur de connexion à l'IA:", error);
-        const loadingMessage = document.getElementById(loadingMessageId);
-        if (loadingMessage) {
-            loadingMessage.textContent = "Désolé, je rencontre un problème technique. Réessaie plus tard.";
+            return "C'est une excellente question. Je peux vous renseigner sur notre mission, l'équipe, la galerie 3D, l'espace artiste ou les différentes catégories d'art disponibles.";
         }
     }
-}
 
     // Logique pour une notification UNIQUE par session de navigation
     function lancerNotification() {
