@@ -50,7 +50,7 @@ Méthode avec Python :
 Ouvrez un terminal dans le dossier du projet.
 
 
-Ouvrez votre navigateur à l'adressehttps://manuella115.github.io/NKA/index.html
+Ouvrez votre navigateur à l'adresse https://manuella115.github.io/NKA/index.html
 
 Naviguez sur le site !
 
